@@ -26,8 +26,8 @@ RUN chown -R www-data:www-data /var/www/html/var /var/www/html/vendor
 
 RUN sed -i 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf
 
-# Expose port 80
-EXPOSE 80
+# Expose port 8080
+EXPOSE 8080
 
 # Set the default command
 CMD ["apache2-foreground"]
