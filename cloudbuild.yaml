@@ -18,3 +18,15 @@ steps:
         '--platform', 'managed',
         '--allow-unauthenticated'
       ]
+
+  # Optional: Clean up old images (uncomment if you want)
+  # - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  #   entrypoint: 'bash'
+  #   args:
+  #     - '-c'
+  #     - |
+  #       gcloud container images list-tags gcr.io/$PROJECT_ID/symfony-app --sort-by=TIMESTAMP \
+  #       | tail -n +6 | awk '{print $1}' | xargs -r -n1 gcloud container images delete -q --force-delete-tags
+
+options:
+  logging: CLOUD_LOGGING_ONLY
