@@ -24,7 +24,9 @@ RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 # Set proper permissions
 RUN chown -R www-data:www-data /var/www/html/var /var/www/html/vendor
 
-RUN sed -i 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf
+# Change Apache to listen on port 8080
+RUN sed -i 's/80/8080/g' /etc/apache2/ports.conf \
+ && sed -i 's/80/8080/g' /etc/apache2/sites-available/000-default.conf
 
 # Expose port 8080
 EXPOSE 8080
