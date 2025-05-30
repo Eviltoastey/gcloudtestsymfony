@@ -37,11 +37,7 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 USER www-data
 ENV APP_ENV=prod
 
-# Symfony prep (optional, adjust for your project)
-RUN php bin/console cache:clear --no-warmup \
- && php bin/console cache:warmup \
- && php bin/console importmap:install \
- && php bin/console assets:install \
- && php bin/console asset-map:compile
+# Optional build-time skip — Symfony will warm cache on first request
+RUN echo "Skipping Symfony cache warmup in Docker build"
 
 CMD ["apache2-foreground"]
